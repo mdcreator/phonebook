@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contacts/contacts-actions';
+import { postContact } from '../../redux/contacts/contacts-operations';
 
 import s from './ContactForm.module.css';
 
@@ -20,14 +20,14 @@ export default function ContactForm() {
   const handleOnSubmit = e => {
     e.preventDefault();
     if (name === '') {
-      alert('Name required');
+      alert('Please add name');
       return;
     }
     if (number === '') {
-      alert('Name required');
+      alert('Please add phone number');
       return;
     }
-    dispatch(addContact({ name, number }));
+    dispatch(postContact({ name, number }));
     setName('');
     setNumber('');
   };
@@ -39,7 +39,7 @@ export default function ContactForm() {
         <input
           className={s.formInput}
           type="text"
-          placeholder=""
+          placeholder="Rosie Simpson"
           name="name"
           value={name}
           onChange={handleNameChange}
@@ -51,7 +51,7 @@ export default function ContactForm() {
         <input
           className={s.formInput}
           type="text"
-          placeholder=""
+          placeholder="459-12-56"
           name="number"
           value={number}
           onChange={handleNumberChange}
